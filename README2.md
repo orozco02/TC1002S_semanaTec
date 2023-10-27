@@ -1,3 +1,7 @@
+Óscar Sergio Orozco Vázquez- A01634257
+
+Est5a base de datos fue obtenida desde la página de Microsoft, el archivo se llama Financial Sample.csv
+
 ¿Hay alguna variable que no aporta información?
 En este caso todas las variables aportan infirmación relevante para el análisis.
 
