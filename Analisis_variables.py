@@ -1,6 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 
 # Cargar los datos
 data = pd.read_csv('Financial Sample.csv')
@@ -39,6 +40,19 @@ sns.heatmap(correlation, annot=True)
 plt.title('Mapa de calor de correlación')
 plt.show()
 
+#Clustering
+data['Sale Price'] = data['Sale Price'].str.replace('[\$,]', '', regex=True).astype(float)
+data_subset = data[['Sale Price', 'Units Sold']]
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+data_normalized = scaler.fit_transform(data_subset)
+kmeans = KMeans(n_clusters=3, random_state=0)
+data['Cluster'] = kmeans.fit_predict(data_normalized)
+plt.scatter(data['Sale Price'], data['Units Sold'], c=data['Cluster'])
+plt.title('Grupos de Productos')
+plt.xlabel('Precio de Venta')
+plt.ylabel('Unidades Vendidas')
+plt.show()
 
 #Diagrama de dispersión
 plt.scatter(data['Units Sold'], data['Manufacturing Price'])
